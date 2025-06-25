@@ -14,6 +14,7 @@ function getRaw(path_) {
 
 // Обработка кастомных элементов
 function celem(page_content, name, params, content) {
+    // ELEMENTS
     if (name === "testText") {
         return page_content.replace(`!${name}!`, `<h2 ${params}>${content}</h2>`);
     }
@@ -22,10 +23,24 @@ function celem(page_content, name, params, content) {
         return page_content.replace(`!${name}!`, `<p style="font-size: 60px;">${content}</p>`);
     }
 
+    // STYLES
     if (name === "stylesMain") {
         const style_content = getRaw('styles/main.css');
         return page_content.replace(`!${name}!`, `<style>${style_content}</style>`);
     }
+
+    // SCRIPTS
+    if (name === "scriptMain1") {
+        const style_content = getRaw('scripts/main1.js');
+        return page_content.replace(`!${name}!`, `<script>${style_content}</script>`);
+    }
+
+    // LOGGERS
+    if (name === "loggerMainPage") {
+        console.log("[LOGGER] : main page loaded");
+        return page_content.replace(`!${name}!`, ``);
+    }
+
 
     return page_content;
 }
@@ -40,6 +55,12 @@ function customElementsLoader(page_content) {
 
     // STYLES
     result = celem(result, "stylesMain", '', '');
+
+    // SCRIPTS
+    result = celem(result, "scriptMain1", '', '');
+
+    // LOGGERS
+    result = celem(result, "loggerMainPage", '', '');
     return result;
 }
 

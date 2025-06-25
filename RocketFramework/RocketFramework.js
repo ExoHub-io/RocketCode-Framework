@@ -4,6 +4,10 @@ const path = require('path');
 const { customElementsLoader } = require('../RocketFramework/Celems.js');
 const { chvarsLoader } = require('../RocketFramework/Chvars.js');
 
+function getJson(req) {
+    return req.body;
+}
+
 // Чтение сырого файла (например, CSS)
 function getRaw(path_) {
     const filePath = path.join(__dirname, '..', 'structure', path_);
@@ -35,4 +39,5 @@ function renderPage(pageName, res) {
 module.exports = {
     renderPage,
     getRaw,
+    getJson,
 };

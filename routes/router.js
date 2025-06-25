@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
+
 const fs = require('fs');
 const path = require('path');
 
 
-const { renderPage, getRaw } = require('../RocketFramework/RocketFramework.js');
+const { renderPage, getRaw, getJson } = require('../RocketFramework/RocketFramework.js');
 
 // Роут на корень
 router.get('/', (req, res) => {
@@ -12,10 +13,10 @@ router.get('/', (req, res) => {
 });
 
 // Пример POST-запроса
-// router.post('/data', (req, res) => {
-//   const { name } = req.body;
-//   res.send(`Получено имя: ${name}`);
-// });
+router.post('/data', (req, res) => {
+  const { name } = getJson(req);
+  res.send(`Получено имя: ${name}`);
+});
 
 
 // Роут: читает файл и возвращает его содержимое
