@@ -123,10 +123,3 @@ MIT License
 ## 💬 Feedback
 
 Pull requests and suggestions are welcome! Open an issue or fork the project 🙌
-
-```
-
----
-
-Если нужно оформить `README` в стиле с таблицей или значками (badges) — могу добавить.
-```
