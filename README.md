@@ -1,12 +1,12 @@
 # 🚀 RocketCode Framework
 
-A simple and extendable Node.js + Express framework for rendering HTML pages with support for custom tags and variables.
+⚡ A simple and extendable Node.js + Express framework for rendering HTML pages with support for custom tags and variables.
 
-Before you start i'm gonna tell you some terms:
+❗❗❗  Before you start i'm gonna tell you some terms: ❗❗❗ 
 * Celems - It's a special tag in two '!' -> !celem1!
 * Chvars - It's a special var in two brackets from both ways '{{' -> {{exampleVar}
 
-Before you continue reading, instead linking css via new route use *Celems* in code you'll see default example of how you can do this!
+❗❗❗ Before you continue reading, instead linking css via new route use *Celems* in code you'll see default example of how you can do this! ❗❗❗ 
 ---
 
 ## 📁 Project Structure
