@@ -1,3 +1,3 @@
 @echo off
-cls && node app.js
-exit
+cls
+npm run dev

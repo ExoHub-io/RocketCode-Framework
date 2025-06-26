@@ -1,1 +1,3 @@
-clear && node app.js
+@echo off
+clear
+npm run dev
