@@ -16,29 +16,29 @@ function getRaw(path_) {
 function celem(page_content, name, params, content) {
     // ELEMENTS
     if (name === "testText") {
-        return page_content.replace(`!${name}!`, `<h2 ${params}>${content}</h2>`);
+        return page_content.replaceAll(`!${name}!`, `<h2 ${params}>${content}</h2>`);
     }
 
     if (name === "bigText") {
-        return page_content.replace(`!${name}!`, `<p style="font-size: 60px;">${content}</p>`);
+        return page_content.replaceAll(`!${name}!`, `<p style="font-size: 60px;">${content}</p>`);
     }
 
     // STYLES
     if (name === "stylesMain") {
         const style_content = getRaw('styles/main.css');
-        return page_content.replace(`!${name}!`, `<style>${style_content}</style>`);
+        return page_content.replaceAll(`!${name}!`, `<style>${style_content}</style>`);
     }
 
     // SCRIPTS
     if (name === "scriptMain1") {
         const style_content = getRaw('scripts/main1.js');
-        return page_content.replace(`!${name}!`, `<script>${style_content}</script>`);
+        return page_content.replaceAll(`!${name}!`, `<script>${style_content}</script>`);
     }
 
     // LOGGERS
     if (name === "loggerMainPage") {
         console.log("[LOGGER] : main page loaded");
-        return page_content.replace(`!${name}!`, ``);
+        return page_content.replaceAll(`!${name}!`, ``);
     }
 
 

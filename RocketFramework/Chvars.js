@@ -15,7 +15,7 @@ function getRaw(path_) {
 // Заменяет {{ переменные }}
 function chvar(page_content, name, data) {
     const regex = new RegExp(`{{\\s*${name}\\s*}}`, 'g');
-    return page_content.replace(regex, data);
+    return page_content.replaceAll(regex, data);
 }
 
 // Обработка переменных
