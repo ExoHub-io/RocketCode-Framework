@@ -19,6 +19,16 @@ function getRaw(path_) {
     }
 }
 
+function writeRaw(path_) {
+    const filePath = path.join(__dirname, '..', 'structure', path_);
+    try {
+        return fs.writeFileSync(filePath, 'utf8');
+    } catch (err) {
+        console.error("Ошибка записи файла:", err);
+        return '';
+    }
+}
+
 // Главная функция для рендера
 function renderPage(pageName, res) {
     const pagePath = path.join(__dirname, '..', 'structure', 'pages', pageName);
@@ -39,5 +49,6 @@ function renderPage(pageName, res) {
 module.exports = {
     renderPage,
     getRaw,
+    writeRaw,
     getJson,
 };
