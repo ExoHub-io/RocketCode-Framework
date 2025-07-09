@@ -1,36 +1,32 @@
 // plugins/pluginExample.js
 
-function say() {
+// Модули
+const { renderPage, getAsset, writeRaw, getJson, getRaw } = require('../RocketFramework');
+const fs = require('fs');
+const path = require('path');
+
+function success() {
     console.warn('ExamplePlugin loaded!')
 }
 
-module.exports = function (context) {
-    // context — объект с полезными ссылками, например, app (Express), db и т.п.
-
-    // Модули
-    const { renderPage, getAsset, writeRaw, getJson, getRaw } = require('../RocketFramework');
-
-    // Берём Express.js "router" из router.js
-    const app = context.router;
-
-    app.use((req, res, next) => {
-        const start = Date.now();
-        console.log(`[Plugin:Logger] ${req.method} ${req.url} - старт`);
-
-        say()
-
-        res.on('finish', () => {
-        const duration = Date.now() - start;
-        console.log(`[Plugin:Logger] ${req.method} ${req.url} - завершено за ${duration}ms`);
-        });
-
-        next();
-    });
+function logic(app) {
+    // examplePluginSettings.html
 
     // Example of handling only "get" requests
     app.get('/plugins/ExamplePlugin/page/main', (req, res) => {
         renderPage('main.html', res); // Here we are rendering page from structure/pages
     });
+}
+
+module.exports = function (context) {
+    // context — объект с полезными ссылками, например, app (Express), db и т.п.
+
+    // Берём Express.js "router" из router.js
+    const app = context.router;
+
+    success();
+
+    logic(app);
 
     // Также можем запускать нужные нам функции
 

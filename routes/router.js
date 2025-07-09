@@ -16,7 +16,7 @@ runPlugins({ router });
 
 // Example of handling only "get" requests
 router.get('/', (req, res) => {
-    renderPage('main.html', res); // Here we are rendering page from structure/pages
+  renderPage('main.html', res); // Here we are rendering page from structure/pages
 });
 
 // Example of handling only "post" requests
