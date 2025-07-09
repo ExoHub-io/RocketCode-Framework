@@ -19,10 +19,10 @@ function getRaw(path_) {
     }
 }
 
-function writeRaw(path_) {
+function writeRaw(path_, data) {
     const filePath = path.join(__dirname, '..', 'structure', path_);
     try {
-        return fs.writeFileSync(filePath, 'utf8');
+        return fs.writeFileSync(filePath, data, 'utf8');
     } catch (err) {
         console.error("Ошибка записи файла:", err);
         return '';
