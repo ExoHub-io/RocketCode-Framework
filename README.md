@@ -121,10 +121,12 @@ To use it just type where you need in your .html
 ---
 
 ## 🗺 Roadmap
+```md
 [ ] - Make Documentation
 [ ] - Make official plugin repo
 [ ] - Make installator for plugins like (apt, pacman, yay)
 [ ] - People can make unofficial plugins (sell it, if they want)
+```
 ---
 
 ## 📄 License
