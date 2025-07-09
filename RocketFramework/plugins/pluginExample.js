@@ -16,6 +16,12 @@ function logic(app) {
     app.get('/plugins/ExamplePlugin/page/main', (req, res) => {
         renderPage('main.html', res); // Here we are rendering page from structure/pages
     });
+
+    // Example of handling only "post" requests
+    app.post('/plugins/ExamplePlugin/data/setting', (req, res) => {
+      const { name, type, data } = getJson(req); // Use the same order of sending data
+      res.send(`Getted setting: ${name}`);
+    });
 }
 
 module.exports = function (context) {
