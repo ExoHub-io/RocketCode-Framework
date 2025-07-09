@@ -121,7 +121,7 @@ To use it just type where you need in your .html
 ---
 
 ## 🗺 Roadmap
-```bash
+```md
 [ ] - Make Documentation
 [ ] - Make official plugin repo
 [ ] - Make installator for plugins like (apt, pacman, yay)
