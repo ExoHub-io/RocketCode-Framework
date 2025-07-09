@@ -1,4 +1,6 @@
 # 🚀 RocketCode Framework | [OFFICIAL REPOSITORY](<https://github.com/ExoHub-io/RocketCode-Framework/>)
+# [Documentation](<https://avirts-organization.gitbook.io/rocketcode-framework-documentation/>)
+# Version: 1.0
 
 ⚡ A simple and extendable Node.js + Express framework for rendering HTML pages with support for custom tags and variables.
 
@@ -18,15 +20,19 @@ project-root/
 ├── routes/
 │   └── router.js          # Main routes
 ├── RocketFramework/
+│   └── plugins/
+│       └── pluginExample.js
 │   └── RocketFramework.js
 │   └── Celems.js
 │   └── Chvars.js
 │   └── HowToUse.js
 ├── structure/
-├   └── pages/
+│   └── pages/
 │       └── main.html     # HTML templates
-├── styles/
-│   └── main.css      # Injected CSS styles
+│   └── styles/
+│       └── main.css      # Injected CSS styles
+│   └── scripts/
+│       └── main.js      # Injected JS script
 
 ````
 
@@ -45,7 +51,7 @@ npm install
 ## 🚀 Running
 
 ```bash
-node app.js
+npm run dev
 ```
 
 After launching, the following routes will be available:
@@ -112,6 +118,13 @@ To use it just type where you need in your .html
 * Custom tags like `!name!` replaced with HTML (Celems)
 * Fully based on `Node.js + Express`, no external template engines
 
+---
+
+## 🗺 Roadmap
+[ ] - Make Documentation
+[ ] - Make official plugin repo
+[ ] - Make installator for plugins like (apt, pacman, yay)
+[ ] - People can make unofficial plugins (sell it, if they want)
 ---
 
 ## 📄 License

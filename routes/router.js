@@ -1,34 +1,28 @@
+// FRAMEWORK NECCESORY
 const express = require('express');
 const router = express.Router();
 
 const fs = require('fs');
 const path = require('path');
 
-
 const { renderPage, getAsset, writeRaw, getJson, getRaw } = require('../RocketFramework/RocketFramework.js');
+const { runPlugins } = require('../RocketFramework/plugman.js');
 
-// Роут на корень
+// Запускаем главный метод плагинов (А дальше они уже сами будут делать что им надо)
+runPlugins({ router });
+// FRAMEWORK NECCESORY
+
+
+
+// Example of handling only "get" requests
 router.get('/', (req, res) => {
-    renderPage('main.html', res);
+    renderPage('main.html', res); // Here we are rendering page from structure/pages
 });
 
-// Пример POST-запроса
+// Example of handling only "post" requests
 router.post('/data', (req, res) => {
-  const { name } = getJson(req);
-  res.send(`Получено имя: ${name}`);
+  const { name, lastname, password } = getJson(req); // Use the same order of sending data
+  res.send(`Getted name: ${name}`);
 });
-
-
-// Роут: читает файл и возвращает его содержимое
-// app.get('/read-file', (req, res) => {
-//   const filePath = path.join("..", 'files', 'example.txt');
-
-//   fs.readFile(filePath, 'utf8', (err, data) => {
-//     if (err) {
-//       return res.status(500).send('Ошибка при чтении файла');
-//     }
-//     res.send(`<pre>${data}</pre>`);
-//   });
-// });
 
 module.exports = router;

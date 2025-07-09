@@ -29,10 +29,88 @@ function writeRaw(path_, data) {
     }
 }
 
-function getAsset(res , path_) {
-    const filePath = path.join(__dirname, '..', 'structure', path_);
-      
-    res.sendFile(filePath);
+function getAsset(res, relativePath) {
+  const baseDir = path.resolve(__dirname, '..', 'structure');
+  const filePath = path.join(baseDir, relativePath);
+
+  // Безопасность: проверяем, что файл внутри baseDir
+  if (!filePath.startsWith(baseDir)) {
+    res.status(400).send('Неверный путь к файлу');
+    return;
+  }
+
+  res.sendFile(filePath, err => {
+    if (err) {
+      res.status(404).send('Файл не найден');
+    }
+  });
+}
+
+function getAssetWithThrottle(res, relativePath, options = {}) {
+  const baseDir = path.resolve(__dirname, '..', 'structure');
+  const filePath = path.join(baseDir, relativePath);
+
+  if (!filePath.startsWith(baseDir)) {
+    res.status(400).send('Неверный путь к файлу');
+    return;
+  }
+
+  // Скорость в байтах в секунду (по умолчанию 100 Кб/с)
+  const speedLimit = options.speedLimit || 100 * 1024;
+
+  fs.stat(filePath, (err, stats) => {
+    if (err || !stats.isFile()) {
+      res.status(404).send('Файл не найден');
+      return;
+    }
+
+    res.writeHead(200, {
+      'Content-Length': stats.size,
+      // Можно добавить Content-Type по расширению файла
+      // 'Content-Type': mime.lookup(filePath) || 'application/octet-stream'
+    });
+
+    const stream = fs.createReadStream(filePath);
+    let paused = false;
+
+    stream.on('data', chunk => {
+      if (!res.write(chunk)) {
+        stream.pause();
+        paused = true;
+      }
+    });
+
+    res.on('drain', () => {
+      if (paused) {
+        stream.resume();
+        paused = false;
+      }
+    });
+
+    // Throttling с помощью задержки между отправками чанков
+    let bytesSent = 0;
+    const interval = 100; // миллисекунд
+    const chunkPerInterval = speedLimit / (1000 / interval);
+
+    stream.on('data', function throttleChunk(chunk) {
+      stream.pause();
+
+      setTimeout(() => {
+        res.write(chunk);
+        bytesSent += chunk.length;
+        stream.resume();
+      }, interval);
+    });
+
+    stream.on('end', () => {
+      res.end();
+    });
+
+    stream.on('error', (e) => {
+      console.error('Ошибка при чтении файла', e);
+      res.end();
+    });
+  });
 }
 
 // Главная функция для рендера
