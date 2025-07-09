@@ -29,6 +29,12 @@ function writeRaw(path_, data) {
     }
 }
 
+function getAsset(res , path_) {
+    const filePath = path.join(__dirname, '..', 'structure', path_);
+      
+    res.sendFile(filePath);
+}
+
 // Главная функция для рендера
 function renderPage(pageName, res) {
     const pagePath = path.join(__dirname, '..', 'structure', 'pages', pageName);
@@ -51,4 +57,5 @@ module.exports = {
     getRaw,
     writeRaw,
     getJson,
+    getAsset
 };

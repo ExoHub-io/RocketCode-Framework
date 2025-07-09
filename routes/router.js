@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 
 
-const { renderPage, writeRaw, getJson, getRaw } = require('../RocketFramework/RocketFramework.js');
+const { renderPage, getAsset, writeRaw, getJson, getRaw } = require('../RocketFramework/RocketFramework.js');
 
 // Роут на корень
 router.get('/', (req, res) => {

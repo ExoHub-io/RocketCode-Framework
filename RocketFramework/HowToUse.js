@@ -1,1 +1,1 @@
-// const { renderPage, writeRaw, getJson, getRaw } = require('../RocketFramework/RocketFramework.js');
+// const { renderPage, getAsset, writeRaw, getJson, getRaw } = require('../RocketFramework/RocketFramework.js');
