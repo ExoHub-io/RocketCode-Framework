@@ -1,6 +1,8 @@
 # 🚀 RocketCode Framework | [OFFICIAL REPOSITORY](<https://github.com/ExoHub-io/RocketCode-Framework/>)
 # [Documentation](<https://avirts-organization.gitbook.io/rocketcode-framework-documentation/>)
-# Open /sys/about to get docs and information about you version
+# Open '/sys/about' to get docs and information about you version
+# Open '/sys/docs' to get docs
+# Open '/sys/repo' to get repo
 
 
 # If you are a proffecional use [RCF Upgrade](<https://github.com/ExoHub-io/RocketCode-Framework-Upgraded>)

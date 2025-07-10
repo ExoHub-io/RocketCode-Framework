@@ -5,6 +5,8 @@ const { renderPage, getAsset, writeRaw, getJson, getRaw } = require('../RocketFr
 const fs = require('fs');
 const path = require('path');
 
+const enableSysRoutes = true; // Use it on prod build
+
 function success() {
     console.warn('System loaded!')
 }
@@ -58,8 +60,8 @@ function logic(app) {
 <body>
     <h1>🚀 RocketCode Framework</h1>
     <h2>Version: ${version}</h2>
-    <a target="_blank" href="https://avirts-organization.gitbook.io/rocketcode-framework-documentation/">Documentation</a><br>
-    <a target="_blank" href="https://github.com/ExoHub-io/RocketCode-Framework/">Repository</a>
+    <a target="_blank" href="/sys/docs">Documentation</a><br>
+    <a target="_blank" href="/sys/repo">Repository</a>
 </body>
 </html>
 `)
@@ -77,5 +79,7 @@ function logic(app) {
 module.exports = function (context) {
     const app = context.router;
     success();
-    logic(app);
+    if (enableSysRoutes) {
+        logic(app);
+    }
 };
