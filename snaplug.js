@@ -23,7 +23,7 @@ async function getPluginInstallerCode(name) {
       url = plugins.examplePlugin;
       break;
 
-    case 'lucideSupport':
+    case 'lucideSupport' || 'lucide':
       url = plugins.lucideSupport;
       break;
 
