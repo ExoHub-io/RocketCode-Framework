@@ -12,6 +12,7 @@ function getGitPath(folder) {
 const plugins = {
   examplePlugin: getGitPath('example_plugin/'),
   lucideSupport: getGitPath('lucide_support/'),
+  mkFast: getGitPath('mkFast/'),
 };
 
 async function getPluginInstallerCode(name) {
@@ -23,6 +24,10 @@ async function getPluginInstallerCode(name) {
       break;
 
     case 'lucideSupport':
+      url = plugins.lucideSupport;
+      break;
+
+    case 'mkFast' || 'makeFast' || 'makeFaster':
       url = plugins.lucideSupport;
       break;
 
