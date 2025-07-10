@@ -50,8 +50,13 @@ function logic(app) {
             font-size: 60px;
             display: inline;
         }
+        
+        h2 {
+            font-size: 30px;
+        }
 
         a {
+            font-size: 20px;
             text-decoration: none;
             color:rgb(0, 174, 218);
         }
@@ -59,9 +64,9 @@ function logic(app) {
 </head>
 <body>
     <h1>🚀 RocketCode Framework</h1>
-    <h2>Version: ${version}</h2>
-    <a target="_blank" href="/sys/docs">Documentation</a><br>
-    <a target="_blank" href="/sys/repo">Repository</a>
+    <h2>⚙ Version: ${version}</h2>
+    <a target="_blank" href="/sys/docs">📃 Documentation</a><br>
+    <a target="_blank" href="/sys/repo">📁 Repository</a>
 </body>
 </html>
 `)
