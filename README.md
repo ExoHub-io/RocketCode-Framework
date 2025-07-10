@@ -127,9 +127,9 @@ To use it just type where you need in your .html
 ## 🗺 Roadmap
 ```md
 [x] - Make Documentation
-[ ] - Make official plugins repo
-[ ] - Make installator for plugins like (apt, pacman, yay)
-[ ] - People can make unofficial plugins (sell it, if they want)
+[X] - Make official plugins repo
+[+-] - Make installator for plugins like (apt, pacman, yay)
+[X] - People can make unofficial plugins (sell it, if they want)
 ```
 ---
 
