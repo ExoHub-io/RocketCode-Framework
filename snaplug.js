@@ -3,12 +3,25 @@ const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
 
-const pluginsGitPath = 'https://raw.githubusercontent.com/ExoHub-io/RCF-Plugins/refs/heads/main/plugins/';
+// Here git-repository url
+const pluginsGitPath = 'https://raw.githubusercontent.com/ExoHub-io/RCF-Plugins/refs/heads/main/plugins/'; // Make sure it ends with "/plugins/"
 
 function getGitPath(folder) {
-    return pluginsGitPath + folder + 'installer.js'
+  return pluginsGitPath + folder + 'installer.js'
 }
 
+function gitErrorHandler() {
+  if (pluginsGitPath.endsWith('plugins/')) {return true}
+  else {console.log(`
+====================Snaplug==================
+This snaplug.js was modified with error
+> pluginsGitPath not endwith "plugins/"
+> ⚠ Make sure that you trust this repository!
+====================Snaplug==================
+`)}
+}
+
+// Here list of git path to plugin folder
 const plugins = {
   examplePlugin: getGitPath('example_plugin/'),
   lucideSupport: getGitPath('lucide_support/'),
@@ -17,50 +30,88 @@ const plugins = {
 
 async function getPluginInstallerCode(name) {
   let url;
+  let Exists = true;
 
-  switch(name) {
-    case 'examplePlugin':
-      url = plugins.examplePlugin;
-      break;
+  if (gitErrorHandler()) {
+    // Here list of plugins
+    switch(name) {
+      case 'examplePlugin':
+        url = plugins.examplePlugin;
+        break;
 
-    case 'lucideSupport' || 'lucide':
-      url = plugins.lucideSupport;
-      break;
+      case 'lucideSupport':
+        url = plugins.lucideSupport;
+        break;
 
-    case 'mkFast' || 'makeFast' || 'makeFaster':
-      url = plugins.lucideSupport;
-      break;
+      case 'mkFast':
+        url = plugins.lucideSupport;
+        break;
 
-    default:
-      console.log(name + ' | Does not exist in snaplug!')
-      break;
-  }
+      case 'blackPlug':
+        Exists = false;
+        console.log(`
+  ========================Snaplug======================
+  > BlackPlug it's a special version of Snaplug that
+  provides you abillity to download pirate plugins
 
-  console.log(`Fetching installer from: ${url}`);
+  > ⚠ We are not responding if you get virus using
+  BlackPlug
+  ========================Snaplug======================
+  `)
 
-  try {
-    const resp = await axios.get(url);
-    console.log('HTTP status:', resp.status);
+        console.log(`
+  ======================BlackPlug====================
+  > ⚠ Read text upside!
+  (You need to download BlackPlug manually)
+  
+  > How to use:
+  node blackplug.js install "repo" "plugin"
 
-    let content = resp.data;
+  > ⚠ Not in quotes!
+  ======================BlackPlug====================
+  `)
+        break;
+      default:
+        Exists = false;
+        console.log(`
+  =====================Snaplug===================
+  ⚠ Plugin "${name}" not exists in official repo
 
-    // ✅ Only try to extract from <pre> if the file looks like HTML
-    if (content.trim().startsWith('<')) {
-      const match = content.match(/<pre[^>]*>([\s\S]*?)<\/pre>/i);
-      if (match) {
-        content = match[1];
-        console.log('<pre> content extracted.');
-      } else {
-        console.warn('Warning: HTML detected, but no <pre> block found.');
-        return;
-      }
+  > To install not official plugins:
+  > node snaplug.js install blackPlug
+  =====================Snaplug===================
+  `)
+        break;
     }
 
-    console.log('Executing installer...');
-    eval(content);  // ⚠️ Still dangerous if untrusted
+    if (Exists) {
+      console.log(`Fetching installer from: ${url}`);
 
-  } catch (err) {
-    console.error('Failed to fetch installer:', err.message);
+      try {
+        const resp = await axios.get(url);
+        console.log('HTTP status:', resp.status);
+
+        let content = resp.data;
+
+        // ✅ Only try to extract from <pre> if the file looks like HTML
+        if (content.trim().startsWith('<')) {
+          const match = content.match(/<pre[^>]*>([\s\S]*?)<\/pre>/i);
+          if (match) {
+            content = match[1];
+            console.log('<pre> content extracted.');
+          } else {
+            console.warn('Warning: HTML detected, but no <pre> block found.');
+            return;
+          }
+        }
+
+        console.log('Executing installer...');
+        eval(content);  // ⚠️ Still dangerous if untrusted
+
+      } catch (err) {
+        console.error('Failed to fetch installer:', err.message);
+      }
+    }
   }
 }
 
