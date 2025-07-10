@@ -25,10 +25,4 @@ router.post('/data', (req, res) => {
   res.send(`Getted name: ${name}`);
 });
 
-module.exports = router;axios.get('https://jsonplaceholder.typicode.com/posts/1')
-  .then(response => {
-    console.log('GET response:', response.data);
-  })
-  .catch(error => {
-    console.error('GET error:', error);
-  });
+module.exports = router;

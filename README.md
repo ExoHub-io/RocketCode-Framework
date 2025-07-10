@@ -128,7 +128,7 @@ To use it just type where you need in your .html
 ```md
 [x] - Make Documentation
 [X] - Make official plugins repo
-[+-] - Make installator for plugins like (apt, pacman, yay)
+[X] - Make installator for plugins like (apt, pacman, yay)
 [X] - People can make unofficial plugins (sell it, if they want)
 ```
 ---
