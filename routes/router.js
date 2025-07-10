@@ -12,7 +12,7 @@ const { runPlugins } = require('../RocketFramework/plugman.js');
 runPlugins({ router });
 // FRAMEWORK NECCESORY
 
-
+// Open /sys/about to get docs and information about you version
 
 // Example of handling only "get" requests
 router.get('/', (req, res) => {

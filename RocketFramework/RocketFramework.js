@@ -137,7 +137,7 @@ function getAssetWithThrottle(res, relativePath, options = {}) {
 function renderPage(pageName, res) {
     const pagePath = path.join(__dirname, '..', 'structure', 'pages', pageName);
 
-    fs.readFileSync(pagePath, 'utf8', (err, data) => {
+    fs.readFile(pagePath, 'utf8', (err, data) => {
         if (err) {
             return res.status(500).send('Ошибка при чтении файла');
         }

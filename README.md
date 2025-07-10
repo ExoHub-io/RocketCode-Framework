@@ -1,6 +1,6 @@
 # 🚀 RocketCode Framework | [OFFICIAL REPOSITORY](<https://github.com/ExoHub-io/RocketCode-Framework/>)
 # [Documentation](<https://avirts-organization.gitbook.io/rocketcode-framework-documentation/>)
-# Version: 1.0
+# Open /sys/about to get docs and information about you version
 
 
 # If you are a proffecional use [RCF Upgrade](<https://github.com/ExoHub-io/RocketCode-Framework-Upgraded>)
@@ -128,7 +128,7 @@ To use it just type where you need in your .html
 ```md
 [x] - Make Documentation
 [X] - Make official plugins repo
-[X] - Make installator for plugins like (apt, pacman, yay)
+[X] - Make installator for plugins like (apt, pacman, yay) | snaplug
 [X] - People can make unofficial plugins (sell it, if they want)
 ```
 ---
