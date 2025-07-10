@@ -29,6 +29,26 @@ function writeRaw(path_, data) {
     }
 }
 
+async function getRawAsync(path_) {
+    const filePath = path.join(__dirname, '..', 'structure', path_);
+    try {
+        return await fs.readFile(filePath, 'utf8');
+    } catch (err) {
+        console.error("Ошибка чтения файла:", err);
+        return '';
+    }
+}
+
+async function writeRawAsync(path_, data) {
+    const filePath = path.join(__dirname, '..', 'structure', path_);
+    try {
+        return await fs.writeFile(filePath, data, 'utf8');
+    } catch (err) {
+        console.error("Ошибка записи файла:", err);
+        return '';
+    }
+}
+
 function getAsset(res, relativePath) {
   const baseDir = path.resolve(__dirname, '..', 'structure');
   const filePath = path.join(baseDir, relativePath);
@@ -117,7 +137,23 @@ function getAssetWithThrottle(res, relativePath, options = {}) {
 function renderPage(pageName, res) {
     const pagePath = path.join(__dirname, '..', 'structure', 'pages', pageName);
 
-    fs.readFile(pagePath, 'utf8', (err, data) => {
+    fs.readFileSync(pagePath, 'utf8', (err, data) => {
+        if (err) {
+            return res.status(500).send('Ошибка при чтении файла');
+        }
+
+        let page_content = data;
+        page_content = chvarsLoader(page_content);
+        page_content = customElementsLoader(page_content);
+
+        res.send(page_content);
+    });
+}
+
+async function renderPageAsync(pageName, res) {
+    const pagePath = path.join(__dirname, '..', 'structure', 'pages', pageName);
+
+    await fs.readFile(pagePath, 'utf8', (err, data) => {
         if (err) {
             return res.status(500).send('Ошибка при чтении файла');
         }
@@ -131,6 +167,10 @@ function renderPage(pageName, res) {
 }
 
 module.exports = {
+    getAssetWithThrottle,
+    getRawAsync,
+    writeRawAsync,
+    renderPageAsync,
     renderPage,
     getRaw,
     writeRaw,

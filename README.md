@@ -2,6 +2,10 @@
 # [Documentation](<https://avirts-organization.gitbook.io/rocketcode-framework-documentation/>)
 # Version: 1.0
 
+
+# If you are a proffecional use [RCF Upgrade](<https://github.com/ExoHub-io/RocketCode-Framework-Upgraded>)
+## It have all  features from React and more! But more harder!
+
 ⚡ A simple and extendable Node.js + Express framework for rendering HTML pages with support for custom tags and variables.
 
 ❗❗❗  Before you start i'm gonna tell you some terms: ❗❗❗ 
@@ -122,8 +126,8 @@ To use it just type where you need in your .html
 
 ## 🗺 Roadmap
 ```md
-[ ] - Make Documentation
-[ ] - Make official plugin repo
+[x] - Make Documentation
+[ ] - Make official plugins repo
 [ ] - Make installator for plugins like (apt, pacman, yay)
 [ ] - People can make unofficial plugins (sell it, if they want)
 ```

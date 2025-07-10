@@ -13,19 +13,20 @@ function loadPlugins() {
       }
     }
   });
-
   return plugins;
 }
 
 function runPlugins(context) {
+  console.log('==============Plugman===============')
   const plugins = loadPlugins();
   plugins.forEach(plugin => {
     try {
       plugin(context);
     } catch (err) {
-      console.error('Ошибка плагина:', err);
+      console.error(`> Ошибка плагина: `, err);
     }
   });
+  console.log('==============Plugman===============')
 }
 
 // Пример вызова
